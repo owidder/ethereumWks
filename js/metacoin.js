@@ -9,10 +9,12 @@ MetaCoin.setProvider(web3.currentProvider);
 const dirtyHack = require('./dirtyHack');
 dirtyHack(MetaCoin);
 
+const getAccounts = require('./accounts');
+
 async function sendCoins(toIndex) {
     try {
         const instance = await MetaCoin.deployed();
-        const accounts = await web3.eth.accounts;
+        const accounts = await getAccounts(web3);
         const accountFrom = accounts[0];
         const accountTo = accounts[toIndex];
         console.log(accountFrom);
