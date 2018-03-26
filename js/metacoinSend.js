@@ -4,27 +4,24 @@ const MetaCoin = contract(artifacts);
 
 const web3 = require('./connect');
 
+const accounts = require('./accounts');
+const global = require('./global');
+
+global.setWeb3(web3);
+
 MetaCoin.setProvider(web3.currentProvider);
 
 const dirtyHack = require('./dirtyHack');
 dirtyHack(MetaCoin);
 
-const getAccounts = require('./accounts');
-
-async function sendCoins(toIndex) {
+async function sendCoins() {
     try {
         const instance = await MetaCoin.deployed();
-        const accounts = await getAccounts(web3);
-        const accountFrom = accounts[0];
-        const accountTo = accounts[toIndex];
-        console.log(accountFrom);
-        console.log(accountTo);
-        const result = await instance.sendCoin(accountTo, 1, {from: accountFrom});
+        const {from, to} = await accounts.getFromTo();
+        console.log(from);
+        console.log(to);
+        const result = await instance.sendCoin(to, 1, {from});
         console.log(result);
-        const balanceFrom = await instance.getBalance.call(accountFrom, {from: accountFrom});
-        console.log(balanceFrom.toNumber());
-        const balanceTo = await instance.getBalance.call(accountTo, {from: accountFrom});
-        console.log(balanceTo.toNumber());
     } catch (e) {
         console.log(e);
     }
