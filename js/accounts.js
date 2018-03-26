@@ -28,15 +28,17 @@ async function _getAccounts(web3) {
     return undefined;
 }
 
-async function getAccounts(web3) {
-    const acc1 = await _accounts(web3);
-    if(!_.isUndefined(acc1)) {
-        return acc1
+async function get(web3) {
+    const _try1 = await _accounts(web3);
+    if(!_.isUndefined(_try1)) {
+        return _try1
     }
     else {
-        const acc2 = await _getAccounts(web3);
-        return acc2;
+        const _try2 = await _getAccounts(web3);
+        return _try2;
     }
 }
 
-module.exports = getAccounts;
+module.exports = {
+    get
+};
