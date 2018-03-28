@@ -31,6 +31,9 @@ async function _getAccounts(web3) {
 }
 
 async function get(web3) {
+    if(_.isUndefined(web3)) {
+        web3 = global.getWeb3();
+    }
     const _try1 = await _accounts(web3);
     if(!_.isUndefined(_try1)) {
         return _try1
@@ -47,7 +50,6 @@ async function getFromTo() {
     let to;
 
     const _accounts = await get(web3);
-    console.log(_accounts);
 
     if(process.argv.length > 2 && process.argv[2].startsWith("0x")) {
         from = process.argv[2];
