@@ -8,27 +8,26 @@ import "./ConvertLib.sol";
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
 contract MetaCoin {
-	mapping (address => uint) balances;
+	mapping (address => int) balances;
 
-	event Transfer(address indexed _from, address indexed _to, uint256 _value);
+	event Transfer(address indexed _from, address indexed _to, int256 _value);
 
 	function MetaCoin() public {
 		balances[tx.origin] = 10000;
 	}
 
-	function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
-		if (balances[msg.sender] < amount) return false;
+	function sendCoin(address receiver, int amount) public returns(bool sufficient) {
 		balances[msg.sender] -= amount;
 		balances[receiver] += amount;
 		Transfer(msg.sender, receiver, amount);
 		return true;
 	}
 
-	function getBalanceInEth(address addr) public view returns(uint){
+	function getBalanceInEth(address addr) public view returns(int){
 		return ConvertLib.convert(getBalance(addr),2);
 	}
 
-	function getBalance(address addr) public view returns(uint) {
+	function getBalance(address addr) public view returns(int) {
 		return balances[addr];
 	}
 }

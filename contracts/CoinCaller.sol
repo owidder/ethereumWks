@@ -4,8 +4,8 @@ import "./MetaCoin.sol";
 
 contract CoinCaller{
 
-	function sendCoin(address coinContractAddress, address receiver, uint amount) external {
+	function sendCoin(address coinContractAddress, address receiver, int amount) external {
 		MetaCoin m = MetaCoin(coinContractAddress);
-		m.sendCoin(receiver, amount);
+		m.delegatecall(bytes4(sha3("sendCoin")),receiver, amount);
 	}
 }
