@@ -24,20 +24,20 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b6101c78061001e6000396000f300606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630b40bd8814610046575b600080fd5b341561005157600080fd5b6100a5600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919050506100a7565b005b8273ffffffffffffffffffffffffffffffffffffffff1660405180807f73656e64436f696e28616464726573732c75696e742900000000000000000000815250601601905060405180910390207c0100000000000000000000000000000000000000000000000000000000900483836040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828152602001925050506000604051808303818661646e5a03f492505050505050505600a165627a7a72305820bd55d72e6d46a9b8d2419b36eaff45640f23efb6d7bcc302f3f28cd2eac28f450029",
-  "deployedBytecode": "0x606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630b40bd8814610046575b600080fd5b341561005157600080fd5b6100a5600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919050506100a7565b005b8273ffffffffffffffffffffffffffffffffffffffff1660405180807f73656e64436f696e28616464726573732c75696e742900000000000000000000815250601601905060405180910390207c0100000000000000000000000000000000000000000000000000000000900483836040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828152602001925050506000604051808303818661646e5a03f492505050505050505600a165627a7a72305820bd55d72e6d46a9b8d2419b36eaff45640f23efb6d7bcc302f3f28cd2eac28f450029",
-  "sourceMap": "52:214:0:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "52:214:0:-;;;;;;;;;;;;;;;;;;;;;;;;75:189;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;166:19;:32;;206:35;;;;;;;;;;;;;;;;;;;166:94;;;243:8;253:6;166:94;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;75:189;;;:::o",
-  "source": "pragma solidity ^0.4.17;\n\nimport \"./MetaCoin.sol\";\n\ncontract CoinCaller{\n\n\tfunction sendCoin(address coinContractAddress, address receiver, uint amount) external {\n\t\tcoinContractAddress.delegatecall(bytes4(keccak256(\"sendCoin(address,uint)\")),receiver, amount);\n\t}\n}\n",
+  "bytecode": "0x6060604052341561000f57600080fd5b6101cd8061001e6000396000f300606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630b40bd8814610046575b600080fd5b341561005157600080fd5b6100a5600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919050506100a7565b005b60008390508073ffffffffffffffffffffffffffffffffffffffff1660405180807f73656e64436f696e28616464726573732c75696e742900000000000000000000815250601601905060405180910390207c0100000000000000000000000000000000000000000000000000000000900484846040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828152602001925050506000604051808303818661646e5a03f49250505050505050505600a165627a7a72305820fb6b0c477cbb24d0aedc3ad1a78f245cb94d82e059e8832c3fdabcff569e47880029",
+  "deployedBytecode": "0x606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630b40bd8814610046575b600080fd5b341561005157600080fd5b6100a5600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919050506100a7565b005b60008390508073ffffffffffffffffffffffffffffffffffffffff1660405180807f73656e64436f696e28616464726573732c75696e742900000000000000000000815250601601905060405180910390207c0100000000000000000000000000000000000000000000000000000000900484846040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001828152602001925050506000604051808303818661646e5a03f49250505050505050505600a165627a7a72305820fb6b0c477cbb24d0aedc3ad1a78f245cb94d82e059e8832c3fdabcff569e47880029",
+  "sourceMap": "52:242:0:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "52:242:0:-;;;;;;;;;;;;;;;;;;;;;;;;75:217;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;166:10;188:19;166:42;;212:1;:14;;234:35;;;;;;;;;;;;;;;;;;;212:76;;;271:8;281:6;212:76;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;75:217;;;;:::o",
+  "source": "pragma solidity ^0.4.17;\n\nimport \"./MetaCoin.sol\";\n\ncontract CoinCaller{\n\n\tfunction sendCoin(address coinContractAddress, address receiver, uint amount) external {\n\t\tMetaCoin m = MetaCoin(coinContractAddress);\n\t\tm.delegatecall(bytes4(keccak256(\"sendCoin(address,uint)\")),receiver, amount);\n\t}\n}\n",
   "sourcePath": "/Users/oliver/dev/ethereum/truffle/metacoin/contracts/CoinCaller.sol",
   "ast": {
     "absolutePath": "/Users/oliver/dev/ethereum/truffle/metacoin/contracts/CoinCaller.sol",
     "exportedSymbols": {
       "CoinCaller": [
-        25
+        31
       ]
     },
-    "id": 26,
+    "id": 32,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -56,8 +56,8 @@
         "file": "./MetaCoin.sol",
         "id": 2,
         "nodeType": "ImportDirective",
-        "scope": 26,
-        "sourceUnit": 139,
+        "scope": 32,
+        "sourceUnit": 145,
         "src": "26:24:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -68,19 +68,106 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 25,
+        "id": 31,
         "linearizedBaseContracts": [
-          25
+          31
         ],
         "name": "CoinCaller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 23,
+              "id": 29,
               "nodeType": "Block",
-              "src": "162:102:0",
+              "src": "162:130:0",
               "statements": [
+                {
+                  "assignments": [
+                    12
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 12,
+                      "name": "m",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 30,
+                      "src": "166:10:0",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_MetaCoin_$144",
+                        "typeString": "contract MetaCoin"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 11,
+                        "name": "MetaCoin",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 144,
+                        "src": "166:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_MetaCoin_$144",
+                          "typeString": "contract MetaCoin"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 16,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 14,
+                        "name": "coinContractAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4,
+                        "src": "188:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 13,
+                      "name": "MetaCoin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 144,
+                      "src": "179:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_contract$_MetaCoin_$144_$",
+                        "typeString": "type(contract MetaCoin)"
+                      }
+                    },
+                    "id": 15,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "179:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_MetaCoin_$144",
+                      "typeString": "contract MetaCoin"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "166:42:0"
+                },
                 {
                   "expression": {
                     "argumentTypes": null,
@@ -94,14 +181,14 @@
                               {
                                 "argumentTypes": null,
                                 "hexValue": "73656e64436f696e28616464726573732c75696e7429",
-                                "id": 16,
+                                "id": 22,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
                                 "kind": "string",
                                 "lValueRequested": false,
                                 "nodeType": "Literal",
-                                "src": "216:24:0",
+                                "src": "244:24:0",
                                 "subdenomination": null,
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_stringliteral_38f633e90bbf9c71d231048810d8b985aeca10e8c996460691291baa75c2fa2b",
@@ -117,18 +204,18 @@
                                   "typeString": "literal_string \"sendCoin(address,uint)\""
                                 }
                               ],
-                              "id": 15,
+                              "id": 21,
                               "name": "keccak256",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 144,
-                              "src": "206:9:0",
+                              "referencedDeclaration": 150,
+                              "src": "234:9:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
                                 "typeString": "function () pure returns (bytes32)"
                               }
                             },
-                            "id": 17,
+                            "id": 23,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -136,7 +223,7 @@
                             "lValueRequested": false,
                             "names": [],
                             "nodeType": "FunctionCall",
-                            "src": "206:35:0",
+                            "src": "234:35:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
                               "typeString": "bytes32"
@@ -150,20 +237,20 @@
                               "typeString": "bytes32"
                             }
                           ],
-                          "id": 14,
+                          "id": 20,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "lValueRequested": false,
                           "nodeType": "ElementaryTypeNameExpression",
-                          "src": "199:6:0",
+                          "src": "227:6:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_type$_t_bytes4_$",
                             "typeString": "type(bytes4)"
                           },
                           "typeName": "bytes4"
                         },
-                        "id": 18,
+                        "id": 24,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -171,7 +258,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "199:43:0",
+                        "src": "227:43:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes4",
                           "typeString": "bytes4"
@@ -179,12 +266,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 19,
+                        "id": 25,
                         "name": "receiver",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 6,
-                        "src": "243:8:0",
+                        "src": "271:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -192,12 +279,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 20,
+                        "id": 26,
                         "name": "amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 8,
-                        "src": "253:6:0",
+                        "src": "281:6:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -221,18 +308,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 11,
-                        "name": "coinContractAddress",
+                        "id": 17,
+                        "name": "m",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 4,
-                        "src": "166:19:0",
+                        "referencedDeclaration": 12,
+                        "src": "212:1:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
+                          "typeIdentifier": "t_contract$_MetaCoin_$144",
+                          "typeString": "contract MetaCoin"
                         }
                       },
-                      "id": 13,
+                      "id": 19,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -240,13 +327,13 @@
                       "memberName": "delegatecall",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "166:32:0",
+                      "src": "212:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_baredelegatecall_nonpayable$__$returns$_t_bool_$",
                         "typeString": "function () returns (bool)"
                       }
                     },
-                    "id": 21,
+                    "id": 27,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -254,19 +341,19 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "166:94:0",
+                    "src": "212:76:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 22,
+                  "id": 28,
                   "nodeType": "ExpressionStatement",
-                  "src": "166:94:0"
+                  "src": "212:76:0"
                 }
               ]
             },
-            "id": 24,
+            "id": 30,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -282,7 +369,7 @@
                   "id": 4,
                   "name": "coinContractAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 30,
                   "src": "93:27:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -308,7 +395,7 @@
                   "id": 6,
                   "name": "receiver",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 30,
                   "src": "122:16:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -334,7 +421,7 @@
                   "id": 8,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 30,
                   "src": "140:11:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -365,27 +452,27 @@
               "parameters": [],
               "src": "162:0:0"
             },
-            "scope": 25,
-            "src": "75:189:0",
+            "scope": 31,
+            "src": "75:217:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 26,
-        "src": "52:214:0"
+        "scope": 32,
+        "src": "52:242:0"
       }
     ],
-    "src": "0:267:0"
+    "src": "0:295:0"
   },
   "legacyAST": {
     "absolutePath": "/Users/oliver/dev/ethereum/truffle/metacoin/contracts/CoinCaller.sol",
     "exportedSymbols": {
       "CoinCaller": [
-        25
+        31
       ]
     },
-    "id": 26,
+    "id": 32,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -404,8 +491,8 @@
         "file": "./MetaCoin.sol",
         "id": 2,
         "nodeType": "ImportDirective",
-        "scope": 26,
-        "sourceUnit": 139,
+        "scope": 32,
+        "sourceUnit": 145,
         "src": "26:24:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -416,19 +503,106 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 25,
+        "id": 31,
         "linearizedBaseContracts": [
-          25
+          31
         ],
         "name": "CoinCaller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 23,
+              "id": 29,
               "nodeType": "Block",
-              "src": "162:102:0",
+              "src": "162:130:0",
               "statements": [
+                {
+                  "assignments": [
+                    12
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 12,
+                      "name": "m",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 30,
+                      "src": "166:10:0",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_MetaCoin_$144",
+                        "typeString": "contract MetaCoin"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 11,
+                        "name": "MetaCoin",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 144,
+                        "src": "166:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_MetaCoin_$144",
+                          "typeString": "contract MetaCoin"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 16,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 14,
+                        "name": "coinContractAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4,
+                        "src": "188:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 13,
+                      "name": "MetaCoin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 144,
+                      "src": "179:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_contract$_MetaCoin_$144_$",
+                        "typeString": "type(contract MetaCoin)"
+                      }
+                    },
+                    "id": 15,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "179:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_MetaCoin_$144",
+                      "typeString": "contract MetaCoin"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "166:42:0"
+                },
                 {
                   "expression": {
                     "argumentTypes": null,
@@ -442,14 +616,14 @@
                               {
                                 "argumentTypes": null,
                                 "hexValue": "73656e64436f696e28616464726573732c75696e7429",
-                                "id": 16,
+                                "id": 22,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
                                 "kind": "string",
                                 "lValueRequested": false,
                                 "nodeType": "Literal",
-                                "src": "216:24:0",
+                                "src": "244:24:0",
                                 "subdenomination": null,
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_stringliteral_38f633e90bbf9c71d231048810d8b985aeca10e8c996460691291baa75c2fa2b",
@@ -465,18 +639,18 @@
                                   "typeString": "literal_string \"sendCoin(address,uint)\""
                                 }
                               ],
-                              "id": 15,
+                              "id": 21,
                               "name": "keccak256",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 144,
-                              "src": "206:9:0",
+                              "referencedDeclaration": 150,
+                              "src": "234:9:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
                                 "typeString": "function () pure returns (bytes32)"
                               }
                             },
-                            "id": 17,
+                            "id": 23,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -484,7 +658,7 @@
                             "lValueRequested": false,
                             "names": [],
                             "nodeType": "FunctionCall",
-                            "src": "206:35:0",
+                            "src": "234:35:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
                               "typeString": "bytes32"
@@ -498,20 +672,20 @@
                               "typeString": "bytes32"
                             }
                           ],
-                          "id": 14,
+                          "id": 20,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "lValueRequested": false,
                           "nodeType": "ElementaryTypeNameExpression",
-                          "src": "199:6:0",
+                          "src": "227:6:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_type$_t_bytes4_$",
                             "typeString": "type(bytes4)"
                           },
                           "typeName": "bytes4"
                         },
-                        "id": 18,
+                        "id": 24,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -519,7 +693,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "199:43:0",
+                        "src": "227:43:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes4",
                           "typeString": "bytes4"
@@ -527,12 +701,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 19,
+                        "id": 25,
                         "name": "receiver",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 6,
-                        "src": "243:8:0",
+                        "src": "271:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -540,12 +714,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 20,
+                        "id": 26,
                         "name": "amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 8,
-                        "src": "253:6:0",
+                        "src": "281:6:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -569,18 +743,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 11,
-                        "name": "coinContractAddress",
+                        "id": 17,
+                        "name": "m",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 4,
-                        "src": "166:19:0",
+                        "referencedDeclaration": 12,
+                        "src": "212:1:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
+                          "typeIdentifier": "t_contract$_MetaCoin_$144",
+                          "typeString": "contract MetaCoin"
                         }
                       },
-                      "id": 13,
+                      "id": 19,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -588,13 +762,13 @@
                       "memberName": "delegatecall",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "166:32:0",
+                      "src": "212:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_baredelegatecall_nonpayable$__$returns$_t_bool_$",
                         "typeString": "function () returns (bool)"
                       }
                     },
-                    "id": 21,
+                    "id": 27,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -602,19 +776,19 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "166:94:0",
+                    "src": "212:76:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 22,
+                  "id": 28,
                   "nodeType": "ExpressionStatement",
-                  "src": "166:94:0"
+                  "src": "212:76:0"
                 }
               ]
             },
-            "id": 24,
+            "id": 30,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -630,7 +804,7 @@
                   "id": 4,
                   "name": "coinContractAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 30,
                   "src": "93:27:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -656,7 +830,7 @@
                   "id": 6,
                   "name": "receiver",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 30,
                   "src": "122:16:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -682,7 +856,7 @@
                   "id": 8,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 24,
+                  "scope": 30,
                   "src": "140:11:0",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -713,18 +887,18 @@
               "parameters": [],
               "src": "162:0:0"
             },
-            "scope": 25,
-            "src": "75:189:0",
+            "scope": 31,
+            "src": "75:217:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 26,
-        "src": "52:214:0"
+        "scope": 32,
+        "src": "52:242:0"
       }
     ],
-    "src": "0:267:0"
+    "src": "0:295:0"
   },
   "compiler": {
     "name": "solc",
@@ -735,15 +909,15 @@
       "events": {},
       "links": {},
       "address": "0x9fbda871d559710256a2502a2517b794b482db40",
-      "transactionHash": "0x69425171642880b9dd33af7b46d7f9dd72429e194a1347d6e7ab3a76e36f08b2"
+      "transactionHash": "0x701855739a239b96ec3592d901a4a5c111569aac142bc00137a8664d75491a12"
     },
     "46953": {
       "events": {},
       "links": {},
-      "address": "0xc48ced4db77226e8655374c4b4638ac8060f8463",
-      "transactionHash": "0xc2451e4df616a104df83e69bfa35dd9777e2969737ae12c9329ea78f703ac48a"
+      "address": "0xfbeedbee0fb7c91d649510b473d83d993d5c1515",
+      "transactionHash": "0x87cb4f630ebf8a974c7a29b1b23409e644d0ea4abb62d9130008864d52f725b2"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-03-28T09:43:18.816Z"
+  "updatedAt": "2018-03-29T05:33:45.340Z"
 }
