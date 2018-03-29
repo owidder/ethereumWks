@@ -4,8 +4,18 @@ import "./MetaCoin.sol";
 
 contract CoinCaller{
 
-	function sendCoin(address coinContractAddress, address receiver, uint amount) external {
+	event Error(string message);
+
+
+	function sendCoin(address coinContractAddress, address receiver, int amount) external {
 		MetaCoin m = MetaCoin(coinContractAddress);
-		m.sendCoin(receiver, 1);
+		m.sendCoin(receiver, amount);
+	}
+
+	function sendCoinDelegate(address coinContractAddress, address receiver, int amount) external {
+		MetaCoin m = MetaCoin(coinContractAddress);
+		if(!m.delegatecall(bytes4(keccak256("sendCoin(address, int)")), receiver,  amount)) {
+			Error("delegatecall did not work!");
+		}
 	}
 }
