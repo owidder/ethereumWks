@@ -30,7 +30,7 @@ async function sendCoins() {
         console.log(metaCoinInstance.address);
         console.log(coinCallerInstance.address);
 
-        const result = await coinCallerInstance.sendCoin(metaCoinInstance.address, _accounts[1], 10, {from: _accounts[0]});
+        const result = await coinCallerInstance.sendCoinDelegate(metaCoinInstance.address, _accounts[1], 10, {from: _accounts[0]});
         console.log(result);
 
         const balanceFrom = await metaCoinInstance.getBalance.call(_accounts[0], {from: _accounts[0]});
