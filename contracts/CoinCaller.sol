@@ -13,7 +13,7 @@ contract CoinCaller{
 	}
 
 	function sendCoinDelegate(address coinContractAddress, address receiver, int amount) external {
-		if(!coinContractAddress.delegatecall(bytes4(keccak256("sendCoin(address, int256)")), receiver,  amount)) {
+		if(!coinContractAddress.delegatecall(bytes4(keccak256("sendCoin(address,int256)")), receiver,  amount)) {
 			Error("delegatecall did not work!");
 		}
 	}
