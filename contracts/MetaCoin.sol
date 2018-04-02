@@ -10,14 +10,22 @@ contract MetaCoin {
 
 	event Transfer(address indexed _from, address indexed _to, int _value);
 
+	event log_receiver(address indexed receiver);
+	event log_text(string text);
+
 	function MetaCoin() public {
 		balances[tx.origin] = 10000;
 	}
 
 	function sendCoin(address receiver,int amount) public {
+		log_receiver(receiver);
 		balances[msg.sender] -= amount;
 		balances[receiver] += amount;
 		Transfer(msg.sender, receiver, amount);
+	}
+
+	function justaTest() public {
+		log_text("Hallo!");
 	}
 
 	function getBalance(address addr) public view returns(int) {

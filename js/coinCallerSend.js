@@ -30,8 +30,29 @@ async function sendCoins() {
         console.log(metaCoinInstance.address);
         console.log(coinCallerInstance.address);
 
-        const result = await coinCallerInstance.sendCoinDelegate(metaCoinInstance.address, _accounts[1], 10, {from: _accounts[0]});
-        console.log(result);
+/*
+        const log_receiver = metaCoinInstance.log_receiver();
+        log_receiver.watch(function (err, res) {
+            console.log("> ------ log_receiver ------");
+            console.log(err);
+            console.log(res);
+            console.log("< ------ log_receiver ------");
+        });
+*/
+
+        // const sendCoinResult = await coinCallerInstance.sendCoin(metaCoinInstance.address, _accounts[1], 10, {from: _accounts[0]});
+        // console.log(sendCoinResult);
+
+        const delegateTestResult = await coinCallerInstance.delegateTest(metaCoinInstance.address, {from: _accounts[0]});
+        console.log(delegateTestResult);
+
+        const log_text = metaCoinInstance.log_text();
+        log_text.get(function (err, res) {
+            console.log("> ------ log_text ------");
+            console.log(err);
+            console.log(res);
+            console.log("< ------ log_text ------");
+        });
 
         const balanceFrom = await metaCoinInstance.getBalance.call(_accounts[0], {from: _accounts[0]});
         console.log(balanceFrom.toNumber());
