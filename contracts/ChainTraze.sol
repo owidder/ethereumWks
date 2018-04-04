@@ -1,4 +1,5 @@
 pragma solidity ^0.4.21;
+pragma experimental ABIEncoderV2;
 
 contract ChainTraze {
     
@@ -9,9 +10,9 @@ contract ChainTraze {
     mapping (address => int256) balances;
     
     string[FIELD_SIZE] field;
-    
-    mapping (address => string) ids;
-    mapping (string => address) addresses;
+
+    mapping (address => string) addressToId;
+    mapping (string => address) idToAddress;
     mapping (string => uint) xpositions;
     mapping (string => uint) ypositions;
     
@@ -30,18 +31,20 @@ contract ChainTraze {
                     yposition = y;
                     return;
                 }
-                x++;
             }
-            y++;
         }
         
         revert();
     }
     
+    function getPositionContent(uint x, uint y) public view returns(string) {
+        uint index = computeIndex(x, y);
+        return field[index];
+    }
+    
     function register(string id) public returns(uint xposition, uint yposition) {
-        string storage existingId = ids[msg.sender];
-        uint len = bytes(existingId).length;
-        if(len > 0) {
+        address existingAddress = idToAddress[id];
+        if(existingAddress != address(0x0)) {
             revert();
         }
         
@@ -49,8 +52,8 @@ contract ChainTraze {
         uint index = computeIndex(xposition, yposition);
         field[index] = id;
         
-        ids[msg.sender] = id;
-        addresses[id] = msg.sender;
+        addressToId[msg.sender] = id;
+        idToAddress[id] = msg.sender;
         xpositions[id] = xposition;
         ypositions[id] = yposition;
     }
