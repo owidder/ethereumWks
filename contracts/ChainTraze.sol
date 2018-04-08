@@ -22,45 +22,50 @@ contract ChainTraze {
         index = y * X_DIM + x;
     }
     
-    
-    function findStartPosition() view internal returns(uint xposition, uint yposition) {
-        for(uint y = 0; y < Y_DIM; y++) {
-            for(uint x = 0; x < X_DIM; x++) {
-                uint index = computeIndex(x, y);
-                string storage posContent = field[index];
-                uint len = bytes(posContent).length;
-                if(len == 0) {
-                    xposition = x;
-                    yposition = y;
-                    return;
-                }
-            }
-        }
-        
-        Error("no empty position found");
-    }
-    
     function getPositionContent(uint x, uint y) public view returns(string) {
         uint index = computeIndex(x, y);
         return field[index];
     }
     
-    function register(string id) public returns(uint xposition, uint yposition) {
+    function checkId(string id) internal returns(bool) {
         address existingAddress = idToAddress[id];
         if(existingAddress != address(0x0)) {
-            Error("id already exists");
+            emit Error("id already exists");
+            return false;
         }
-        else {
-            (xposition, yposition) = findStartPosition();
-            uint index = computeIndex(xposition, yposition);
+        
+        return true;
+    }
+    
+    function checkStartPosition(uint startx, uint starty) internal returns(bool) {
+        uint index = computeIndex(startx, starty);
+        string storage content = field[index];
+        uint len = bytes(content).length;
+        if(len > 0) {
+            emit Error("start position not free");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    function goIntoField(string id, uint x, uint y) internal {
+            uint index = computeIndex(x, y);
             field[index] = id;
-
-            Position(id, xposition, yposition);
-            
-            addressToId[msg.sender] = id;
-            idToAddress[id] = msg.sender;
-            xpositions[id] = xposition;
-            ypositions[id] = yposition;
+            xpositions[id] = x;
+            ypositions[id] = y;
+            emit Position(id, x, y);
+    }
+    
+    function registerId(string id) internal {
+        addressToId[msg.sender] = id;
+        idToAddress[id] = msg.sender;
+    }
+    
+    function register(string id, uint startx, uint starty) public {
+        if(checkId(id) && checkStartPosition(startx, starty)) {
+            registerId(id);
+            goIntoField(id, startx, starty);
         }
     }
 }
