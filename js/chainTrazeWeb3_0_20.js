@@ -34,7 +34,7 @@ async function callWithoutTruffle() {
         }
     });
 
-    const result = await chainTrazeContractInstance.getPositionContent.call(0, 0);
+    const result = await chainTrazeContractInstance.getPositionContent.call(1, 10);
     console.log(result);
 
 }

@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-const abi = [
+const abi =
     [
         {
             "anonymous": false,
@@ -42,19 +42,18 @@ const abi = [
                 {
                     "name": "id",
                     "type": "string"
-                }
-            ],
-            "name": "register",
-            "outputs": [
+                },
                 {
-                    "name": "xposition",
+                    "name": "startx",
                     "type": "uint256"
                 },
                 {
-                    "name": "yposition",
+                    "name": "starty",
                     "type": "uint256"
                 }
             ],
+            "name": "register",
+            "outputs": [],
             "payable": false,
             "stateMutability": "nonpayable",
             "type": "function"
@@ -82,10 +81,10 @@ const abi = [
             "stateMutability": "view",
             "type": "function"
         }
-    ]
-];
+    ];
+
 
 const processParamAddress = process.argv[3];
-const address = _.isUndefined(processParamAddress) ? "0x8cdaf0cd259887258bc13a92c0a6da92698644c0" : processParamAddress;
+const address = _.isUndefined(processParamAddress) ? "0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f" : processParamAddress;
 
 module.exports = {abi, address};

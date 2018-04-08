@@ -10,6 +10,8 @@ async function callWithEthers() {
     console.log(accounts);
 
     const contract = new ethers.Contract(chainTrazeContractInfo.address, chainTrazeContractInfo.abi, provider);
+    const result = await contract.getPositionContent(0, 0);
+    console.log(result);
 }
 
 callWithEthers();
