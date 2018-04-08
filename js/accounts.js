@@ -16,18 +16,44 @@ async function _accounts(web3) {
     return undefined;
 }
 
-async function _getAccounts(web3) {
-    try {
-        const accounts = await web3.eth.getAccounts();
-        const firstAccount = accounts[0];
-        if (!_.isUndefined(firstAccount)) {
-            return accounts;
-        }
-    } catch (e) {
-        console.log(e);
-    }
+function checkAccounts(accounts) {
+    return !_.isUndefined(accounts[0]);
+}
 
-    return undefined;
+function _getAccounts2(web3, resolve, reject) {
+    web3.eth.getAccounts(function (accounts) {
+        if(checkAccounts(accounts)) {
+            resolve(accounts);
+        }
+        else {
+            reject();
+        }
+    })
+}
+
+function _getAccounts1(web3, resolve, reject) {
+    try {
+        web3.eth.getAccounts().then((accounts) => {
+            if (checkAccounts(accounts)) {
+                resolve(accounts);
+            }
+            else {
+                _getAccounts2(web3, resolve, reject);
+            }
+        }, (e) => {
+            console.log(e);
+            _getAccounts2(web3, resolve, reject);
+        })
+    } catch(e) {
+        console.log(e);
+        _getAccounts2(web3, resolve, reject);
+    }
+}
+
+function _getAccounts(web3) {
+    return new Promise((resolve, reject) => {
+        _getAccounts1(web3, resolve, reject);
+    });
 }
 
 async function get(web3) {

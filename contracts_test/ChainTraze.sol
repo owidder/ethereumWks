@@ -16,12 +16,10 @@ contract ChainTraze {
     mapping (string => uint) ypositions;
     
     event Position(string id, uint x, uint y);
-    event Error(string message);
     
     function computeIndex(uint x, uint y) pure internal returns(uint index) {
         index = y * X_DIM + x;
     }
-    
     
     function findStartPosition() view internal returns(uint xposition, uint yposition) {
         for(uint y = 0; y < Y_DIM; y++) {
@@ -37,7 +35,7 @@ contract ChainTraze {
             }
         }
         
-        Error("no empty position found");
+        revert();
     }
     
     function getPositionContent(uint x, uint y) public view returns(string) {
@@ -48,19 +46,18 @@ contract ChainTraze {
     function register(string id) public returns(uint xposition, uint yposition) {
         address existingAddress = idToAddress[id];
         if(existingAddress != address(0x0)) {
-            Error("id already exists");
+            revert();
         }
-        else {
-            (xposition, yposition) = findStartPosition();
-            uint index = computeIndex(xposition, yposition);
-            field[index] = id;
-
-            Position(id, xposition, yposition);
-            
-            addressToId[msg.sender] = id;
-            idToAddress[id] = msg.sender;
-            xpositions[id] = xposition;
-            ypositions[id] = yposition;
-        }
+        
+        (xposition, yposition) = findStartPosition();
+        uint index = computeIndex(xposition, yposition);
+        field[index] = id;
+        
+        addressToId[msg.sender] = id;
+        idToAddress[id] = msg.sender;
+        xpositions[id] = xposition;
+        ypositions[id] = yposition;
+        
+        Position(id, xposition, yposition);
     }
 }
