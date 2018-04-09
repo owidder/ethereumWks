@@ -13,13 +13,21 @@ async function callWithEthers() {
     console.log(accounts);
 
     const contract = new ethers.Contract(chainTrazeContractInfo.address, chainTrazeContractInfo.abi, provider);
-    const result = await contract.getPositionContent(55, 66);
-    console.log(result);
 
-    provider.on(["0x5dfb2295f6c23ae130d55b1106b02184d4a217886880ae1d0f37123542574775"], function (log) {
-        console.log(log);
-        console.log(chainTrazeInterface.events.Position2.parse(log.data));
-    })
+    provider.on(chainTrazeInterface.events.Position2.topics, function (log) {
+        const data = chainTrazeInterface.events.Position2.parse(log.data);
+        console.log(data);
+    });
+
+    provider.on(chainTrazeInterface.events.Position.topics, function (log) {
+        const data = chainTrazeInterface.events.Position.parse(log.data);
+        console.log(data);
+    });
+
+    provider.on(chainTrazeInterface.events.Error.topics, function (log) {
+        const data = chainTrazeInterface.events.Error.parse(log.data);
+        console.log(data);
+    });
 }
 
 callWithEthers();
