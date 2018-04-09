@@ -16,6 +16,18 @@ async function callWithoutTruffle() {
 
     const positionEvent = chainTrazeContractInstance.Position();
     positionEvent.watch(function (error, result) {
+        console.log("-----> Position");
+        if(!error) {
+            console.log(result);
+        }
+        else {
+            console.log(error);
+        }
+    });
+
+    const position2Event = chainTrazeContractInstance.Position2();
+    position2Event.watch(function (error, result) {
+        console.log("-----> Position2");
         if(!error) {
             console.log(result);
         }
@@ -26,6 +38,7 @@ async function callWithoutTruffle() {
 
     const errorEvent = chainTrazeContractInstance.Error();
     errorEvent.watch(function (error, result) {
+        console.log("-----> Error");
         if(!error) {
             console.log(result);
         }
@@ -34,7 +47,7 @@ async function callWithoutTruffle() {
         }
     });
 
-    const result = await chainTrazeContractInstance.getPositionContent.call(1, 10);
+    const result = await chainTrazeContractInstance.getPositionContent.call(55, 66);
     console.log(result);
 
 }

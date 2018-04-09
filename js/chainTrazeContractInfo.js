@@ -29,6 +29,28 @@ const abi =
             "inputs": [
                 {
                     "indexed": false,
+                    "name": "id",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "x",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "y",
+                    "type": "string"
+                }
+            ],
+            "name": "Position2",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
                     "name": "message",
                     "type": "string"
                 }
@@ -81,10 +103,11 @@ const abi =
             "stateMutability": "view",
             "type": "function"
         }
-    ];
+    ]
+;
 
 
 const processParamAddress = process.argv[3];
-const address = _.isUndefined(processParamAddress) ? "0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f" : processParamAddress;
+const address = _.isUndefined(processParamAddress) ? "0x3d49d1ef2ade060a33c6e6aa213513a7ee9a6241" : processParamAddress;
 
 module.exports = {abi, address};
