@@ -8,6 +8,9 @@
   },
   "dependencies": {
     "ethers": "^3.0.9",
+    "ethjs": "^0.3.6",
+    "ethjs-contract": "^0.1.9",
+    "ethjs-query": "^0.3.4",
     "lodash": "^4.17.5",
     "truffle-contract": "^3.0.4",
     "web3": "^0.20.6"
